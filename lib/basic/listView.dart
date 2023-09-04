@@ -1,5 +1,3 @@
-import 'package:basic/models/Photo.dart';
-import 'package:basic/network/network_%20requestAPI.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,14 +24,14 @@ class MyListView extends StatefulWidget {
 }
 
 class _MyListViewState extends State<MyListView> {
-  List<Photo> photoData = List();
+  //List<Photo> photoData = List();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    NetworkRequest.fetchPhotos()
-        .then((dataFormServer) => {photoData = dataFormServer});
+    //  NetworkRequest.fetchPhotos()
+    //      .then((dataFormServer) => {photoData = dataFormServer});
   }
 
   @override

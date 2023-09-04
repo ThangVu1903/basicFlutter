@@ -34,7 +34,7 @@ class _MyHomePage extends State<MyHomePage> {
         child: Container(
           width: size.width,
           height: size.height,
-          color: const Color.fromARGB(156, 197, 161, 88),
+          color: const Color.fromARGB(156, 255, 200, 91),
           child: Column(
             children: [
               Padding(
@@ -88,8 +88,8 @@ class _MyHomePage extends State<MyHomePage> {
               ),
               Padding(
                 //button login
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
+                padding: const EdgeInsets.only(
+                    top: 50, left: 40, right: 40, bottom: 20),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(16, 75, 118, 0.612),
@@ -112,6 +112,24 @@ class _MyHomePage extends State<MyHomePage> {
                             ),
                           ]),
                     )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: InkWell(
+                  child: const Text(
+                    'Register?',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontSize: 16,
+                        color: Colors.black),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const signUp()));
+                  },
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 40),
@@ -173,7 +191,7 @@ class _MyHomePage extends State<MyHomePage> {
     );
   }
 
-    inputText(String lable, Widget icon, [Widget? eye]) {
+  inputText(String lable, Widget icon, [Widget? eye]) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       child: Material(
