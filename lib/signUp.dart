@@ -12,7 +12,7 @@ class signUp extends StatelessWidget {
         child: Container(
           width: size.width,
           height: size.height,
-          color: const Color.fromARGB(156, 197, 161, 88),
+          color: const Color.fromARGB(156, 255, 200, 91),
           child: Column(
             children: [
               Padding(
@@ -35,39 +35,29 @@ class signUp extends StatelessWidget {
                 ),
               ),
               inputText(
-                  'Email...',
+                  'Enter your email',
                   const Icon(
                     Icons.email,
                     color: Color.fromRGBO(18, 84, 132, 0.612),
                   )),
               inputText(
-                'Password...',
+                'Enter Password',
                 const Icon(
                   Icons.key,
                   color: Color.fromRGBO(16, 75, 118, 0.612),
                 ),
+              ),
+              inputText(
+                'Enter Password again',
                 const Icon(
-                  Icons.remove_red_eye,
+                  Icons.key,
                   color: Color.fromRGBO(16, 75, 118, 0.612),
                 ),
-              ),
-              InkWell(
-                child: const Text(
-                  'Fogot password ?',
-                  style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: 16,
-                      color: Colors.black),
-                ),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const signUp()));
-                },
               ),
               Padding(
                 //button login
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 70),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(16, 75, 118, 0.612),
@@ -80,70 +70,13 @@ class signUp extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Log in ',
+                              'Create account ',
                               style: TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.bold),
-                            ),
-                            Icon(
-                              Icons.arrow_right_alt,
-                              size: 30,
                             ),
                           ]),
                     )),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Divider(
-                      color: Colors.black,
-                    )),
-                    Text(
-                      '   OR   ',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Expanded(
-                        child: Divider(
-                      color: Colors.black,
-                    )),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              "asset/icons/facebook.png",
-                            )),
-                        const Text(
-                          "Login with facebook",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: Image.asset(
-                              "asset/icons/google.png",
-                            )),
-                        const Text(
-                          "Login with google",
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),
@@ -151,7 +84,7 @@ class signUp extends StatelessWidget {
     );
   }
 
-  inputText(String lable, Widget icon, [Widget? eye]) {
+  inputText(String lable, Widget icon) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       child: Material(
@@ -167,7 +100,6 @@ class signUp extends StatelessWidget {
               filled: true,
               fillColor: const Color.fromARGB(156, 232, 232, 232),
               prefixIcon: icon,
-              suffixIcon: eye,
               border: const UnderlineInputBorder(
                   borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),

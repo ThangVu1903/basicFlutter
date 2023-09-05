@@ -25,6 +25,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePage extends State<MyHomePage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+
+  late bool _showpassword = false;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -57,22 +61,31 @@ class _MyHomePage extends State<MyHomePage> {
                 ),
               ),
               inputText(
-                  'Email...',
-                  const Icon(
-                    Icons.email,
-                    color: Color.fromRGBO(18, 84, 132, 0.612),
-                  )),
-              inputText(
-                'Password...',
+                _emailController,
+                'Email...',
                 const Icon(
-                  Icons.key,
-                  color: Color.fromRGBO(16, 75, 118, 0.612),
-                ),
-                const Icon(
-                  Icons.remove_red_eye,
-                  color: Color.fromRGBO(16, 75, 118, 0.612),
+                  Icons.email,
+                  color: Color.fromRGBO(18, 84, 132, 0.612),
                 ),
               ),
+              inputText(
+                  _passController,
+                  'Password...',
+                  const Icon(
+                    Icons.key,
+                    color: Color.fromRGBO(16, 75, 118, 0.612),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _showpassword = !_showpassword;
+                        });
+                      },
+                      icon: _showpassword
+                          ? const Icon(Icons.remove_red_eye)
+                          : const Icon(Icons.visibility_off),
+                      color: const Color.fromRGBO(16, 75, 118, 0.612)),
+                  _showpassword),
               InkWell(
                 child: const Text(
                   'Fogot password ?',
@@ -94,7 +107,7 @@ class _MyHomePage extends State<MyHomePage> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(16, 75, 118, 0.612),
                     ),
-                    onPressed: () {},
+                    onPressed: onSignInclicked,
                     child: const SizedBox(
                       height: 55,
                       width: 340,
@@ -191,7 +204,8 @@ class _MyHomePage extends State<MyHomePage> {
     );
   }
 
-  inputText(String lable, Widget icon, [Widget? eye]) {
+  inputText(TextEditingController controller, String lable, Widget icon,
+      [Widget? eye, bool obscureTexts = false]) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
       child: Material(
@@ -202,6 +216,8 @@ class _MyHomePage extends State<MyHomePage> {
         elevation: 18,
         shadowColor: Colors.grey,
         child: TextField(
+          controller: controller,
+          textInputAction: TextInputAction.none,
           style: const TextStyle(fontSize: 20),
           decoration: InputDecoration(
               filled: true,
@@ -209,14 +225,18 @@ class _MyHomePage extends State<MyHomePage> {
               prefixIcon: icon,
               suffixIcon: eye,
               border: const UnderlineInputBorder(
-                  borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
-              )),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
               label: Text(lable),
               labelStyle: const TextStyle(color: Colors.grey)),
+          obscureText: obscureTexts,
         ),
       ),
     );
   }
+
+  void onSignInclicked() {}
 }
